@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Saved News</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <h3 *ngIf="items.length===0" text-center>No saved news</h3>
+  <ion-card *ngFor="let item of items" class="news" (click)="goItemPage(item)">
+      <img [src]="item.image"/>
+      <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{item.title}}</ion-row>
+      <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(item.published_at) | date:'dd MMM h:mm'}}</ion-row>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,36 @@
+.dark-theme {  
+  ion-content {
+    background-color: #151E29;
+    color: #fff;
+  }
+  
+  .toolbar-title {
+    color: #fff;
+  }
+
+  .header .toolbar-background {
+    border-color: #000;
+    background-color: #1B2737;
+  }
+
+  .card {
+    background-color: #1B2737;
+  }
+
+  .icon{
+    color:lightgrey;
+  }
+
+  ion-item,button.item {
+    background-color: #1B2737;
+    color: #fff; 
+  }
+  
+  .fab-md-general, .fab-ios-general{
+    background-color: #1B2737;
+  }
+
+  .header ion-searchbar .icon {
+    color: #222;
+  }
+}

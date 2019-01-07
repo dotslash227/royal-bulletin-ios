@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<ion-list>
+  <ion-item>
+    <ion-label>Font size <ion-badge color="secondary">{{app.fontSize}}</ion-badge></ion-label>
+    <ion-range min="8" max="48" step="2" [(ngModel)]="app.fontSize">
+      <ion-row style="font-size:18px" range-left>A</ion-row>
+      <ion-row style="font-size:38px" range-right>A</ion-row>
+    </ion-range>
+  </ion-item>
+  
+  <ion-item>
+    <div [style.font-size]="app.fontSize+'px'">Example text</div>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Night mode</ion-label>
+    <ion-toggle [(ngModel)]="nightmode" (ionChange)="toggleAppTheme()"></ion-toggle>
+  </ion-item>
+
+  <button ion-item (click)="goSavedNews()">
+      Saved News
+    </button>  
+</ion-list>
+</ion-content>
