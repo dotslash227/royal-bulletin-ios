@@ -6,11 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from "@ionic-native/network";
 import { HttpModule } from "@angular/http";
+import { HttpClientModule } from '@angular/common/http';
 import { Push } from '@ionic-native/push';
 import { AppProvider } from '../providers/app/app';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewsPage } from "../pages/news/news";
+import { NewsProvider } from '../providers/news/news';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { NewsPage } from "../pages/news/news";
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp, {
       platforms: {
@@ -41,6 +44,7 @@ import { NewsPage } from "../pages/news/news";
     StatusBar,
     SplashScreen,
     AppProvider,
+    NewsProvider,
     Network,
     Push,
     AppProvider,

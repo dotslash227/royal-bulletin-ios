@@ -4,6 +4,7 @@ import { AppProvider } from "../../providers/app/app";
 import { Network } from "@ionic-native/network";
 import { NewsPage } from "../news/news";
 import { throttle } from 'lodash';
+import { NewsProvider } from '../../providers/news/news';
 
 @Component({
   selector: 'page-home',
@@ -25,13 +26,20 @@ export class HomePage {
     private zone: NgZone,
     private renderer: Renderer,
     private keyboard: Keyboard,
-    private app: AppProvider) {
+    private app: AppProvider,
+    private news: NewsProvider) {
     this.scrollToTop = throttle(this.scrollToTop, 500, { leading: true, trailing: false });
     this.loadCategoryList();
   }
 
   loadCategoryList() {
     if (this.network.type !== "none") {
+      this.news.getCategories()
+        .subscribe(data => {
+          this.app.category = this.news.formatResponse(data);
+          console.log(this.app.category);
+          this.changeTab(this.app.category[0].id)
+      })
       this.app.getData('Category').subscribe(data => {
         this.app.category = data.items;
         this.changeTab(this.app.category[0].id);

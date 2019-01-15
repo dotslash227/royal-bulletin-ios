@@ -19,9 +19,13 @@
                 *ngFor="let tab of app.category"
                 [value]="tab.id"
                 (click)="changeTab(tab.id)">
-                {{tab.title}}
+                {{tab.name}}
             </ion-segment-button>
         </ion-segment>
+    </ion-toolbar>
+
+    <ion-toolbar>
+        <div class="skeleton-loader">abcd</div>
     </ion-toolbar>
 </ion-header>
 

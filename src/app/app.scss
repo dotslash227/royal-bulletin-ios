@@ -53,3 +53,22 @@ ion-toolbar.scrollable-segments {
       height: 30vh;
     }
   }
+  
+  .skeleton-loader {
+    width: 100%;
+    background-color: color($colors, general);
+    height: 25px;
+    background-image: linear-gradient(90deg, color($colors, general) 40%, rgba(255, 255, 255, 0.4) 50%, color($colors, general) 60%);
+    background-size: 100%;
+    animation: shine 1.6s infinite alternate;
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: -100px;
+    }
+
+    100% {
+      background-position: 100px;
+    }
+  }
