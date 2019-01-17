@@ -20,11 +20,15 @@ export class NewsProvider {
     return this.http.get(uri, { responseType: 'text' });
   }
 
-  formatResponse(response) {
+  formatResponse(response, debug: boolean = false) {
     let responseInJson = [], k = 0;
     let parser = new DOMParser();
     let oDOM = parser.parseFromString(response, "application/xml");
     let nodes = oDOM.firstChild.childNodes;
+
+    if (debug) {
+      console.log(nodes);
+    }
 
     for (let i = 0; i < nodes.length; i++) {
       if (i % 2 !== 0) {
@@ -37,5 +41,15 @@ export class NewsProvider {
     } 
     return responseInJson;
   } 
+
+  getCategoryDetail(id) {
+    let uri = 'http://rb.delhinerds.com/category/' + id;
+    return this.http.get(uri, { responseType: 'text' });
+  }
+
+  getNewsById(id) {
+    let uri = 'http://rb.delhinerds.com/news/' + id;
+    return this.http.get(uri, { responseType: 'text' });
+  }
 
 }

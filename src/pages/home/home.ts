@@ -1,14 +1,14 @@
-import { Component, ViewChild, NgZone, Renderer } from '@angular/core';
-import { Content, NavController, Keyboard } from 'ionic-angular';
+import { Component, ViewChild, NgZone, Renderer } from "@angular/core";
+import { Content, NavController, Keyboard } from "ionic-angular";
 import { AppProvider } from "../../providers/app/app";
 import { Network } from "@ionic-native/network";
 import { NewsPage } from "../news/news";
-import { throttle } from 'lodash';
-import { NewsProvider } from '../../providers/news/news';
+import { throttle } from "lodash";
+import { NewsProvider } from "../../providers/news/news";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: "page-home",
+  templateUrl: "home.html"
 })
 export class HomePage {
   @ViewChild(Content) content: Content;
@@ -18,30 +18,30 @@ export class HomePage {
   public errorMessage: string = null;
   private newsList: any = [];
   private showFloat: boolean = false;
-  private query: string = '';
+  private query: string = "";
   private isSearchBar: boolean = false;
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private network: Network,
     private zone: NgZone,
     private renderer: Renderer,
     private keyboard: Keyboard,
     private app: AppProvider,
-    private news: NewsProvider) {
-    this.scrollToTop = throttle(this.scrollToTop, 500, { leading: true, trailing: false });
+    private news: NewsProvider
+  ) {
+    this.scrollToTop = throttle(this.scrollToTop, 500, {
+      leading: true,
+      trailing: false
+    });
     this.loadCategoryList();
   }
 
   loadCategoryList() {
     if (this.network.type !== "none") {
-      this.news.getCategories()
-        .subscribe(data => {
-          this.app.category = this.news.formatResponse(data);
-          console.log(this.app.category);
-          this.changeTab(this.app.category[0].id)
-      })
-      this.app.getData('Category').subscribe(data => {
-        this.app.category = data.items;
+      this.news.getCategories().subscribe(data => {
+        this.app.category = this.news.formatResponse(data);
+        console.log(this.app.category);
         this.changeTab(this.app.category[0].id);
       });
     } else {
@@ -54,20 +54,51 @@ export class HomePage {
       this.isInternet = false;
       this.errorMessage = null;
 
-      this.app
-        .getData('News/' + this.activeTab + '?page=' + (refresh ? 0 : this.newsList.length) + this.query)
-        .subscribe(data => {
-          if (refresh) this.newsList = [];
-          if (data.news.length > 0) {
-            this.newsList = this.newsList.concat(data.news);
-          } else if (this.newsList.length === 0) {
-            this.errorMessage = 'Sorry, there are no results.';
-          }
-          if (infiniteScroll != null) infiniteScroll.complete();
-        }, error => {
+      // get news list from a category
+      this.news.getCategoryDetail(this.query).subscribe(
+        res => {
+          let parser = new DOMParser();
+          let oDOM = parser.parseFromString(res, "application/xml");
+          let nodes = oDOM.firstChild.childNodes[0].data;
+          console.log('newslist', this.news.formatResponse(nodes))
+          this.newsList = this.news.formatResponse(nodes);
+          // oDOM = parser.parseFromString(nodes, "application/xml");
+          // nodes = oDOM.firstChild.childNodes;
+
+          // for (let i = 0; i < nodes.length; i++) {
+          //   console.log(nodes[i])
+          // }
+        },
+        err => {
+          console.log(err);
           this.isInternet = true;
           if (infiniteScroll != null) infiniteScroll.complete();
-        });
+        }
+      );
+
+      // this.app
+      //   .getData(
+      //     "News/" +
+      //       this.activeTab +
+      //       "?page=" +
+      //       (refresh ? 0 : this.newsList.length) +
+      //       this.query
+      //   )
+      //   .subscribe(
+      //     data => {
+      //       if (refresh) this.newsList = [];
+      //       if (data.news.length > 0) {
+      //         this.newsList = this.newsList.concat(data.news);
+      //       } else if (this.newsList.length === 0) {
+      //         this.errorMessage = "Sorry, there are no results.";
+      //       }
+      //       if (infiniteScroll != null) infiniteScroll.complete();
+      //     },
+      //     error => {
+      //       this.isInternet = true;
+      //       if (infiniteScroll != null) infiniteScroll.complete();
+      //     }
+      //   );
     } else {
       this.isInternet = true;
       if (infiniteScroll != null) infiniteScroll.complete();
@@ -79,29 +110,29 @@ export class HomePage {
   }
 
   onSearch(event) {
-    this.renderer.invokeElementMethod(event.target, 'blur');
+    this.renderer.invokeElementMethod(event.target, "blur");
     this.keyboard.close();
     this.activeTab = this.app.category[0].title;
     this.newsList = [];
-    this.query = '&search=' + event.target.value;
+    this.query = "&search=" + event.target.value;
     this.loadNewsList();
   }
 
   changeTab(newTab) {
     this.isSearchBar = false;
-    this.query = '';
+    this.query = newTab;
     this.activeTab = newTab;
     this.loadNewsList(null, true);
   }
 
-  goItemPage(data) {
-    this.navCtrl.push(NewsPage, { news: data });
+  goItemPage(id) {
+    this.navCtrl.push(NewsPage, { newsId: parseInt(id) });
   }
 
   closeSearchBar() {
     this.isSearchBar = false;
     this.newsList = [];
-    this.query = '';
+    this.query = "";
     this.loadNewsList();
   }
 
@@ -109,13 +140,11 @@ export class HomePage {
     if (this.content.scrollTop != null && this.content.scrollTop > 200) {
       if (this.showFloat === false) {
         this.showFloat = true;
-        this.zone.run(() => {
-        });
+        this.zone.run(() => {});
       }
     } else if (this.showFloat) {
       this.showFloat = false;
-      this.zone.run(() => {
-      });
+      this.zone.run(() => {});
     }
   }
 
@@ -123,7 +152,7 @@ export class HomePage {
     if (this.showFloat) {
       this.showFloat = false;
       const wait = this.content.isScrolling ? 150 : 0;
-      setTimeout(() => this.content.scrollToTop(500), wait)
+      setTimeout(() => this.content.scrollToTop(500), wait);
     }
   }
 
@@ -133,10 +162,10 @@ export class HomePage {
   }
 
   goSettings() {
-    this.navCtrl.push('SettingsPage');
+    this.navCtrl.push("SettingsPage");
   }
 
   goSavedNews() {
-    this.navCtrl.push('SavednewsPage');
+    this.navCtrl.push("SavednewsPage");
   }
 }

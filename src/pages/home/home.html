@@ -23,10 +23,7 @@
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
-
-    <ion-toolbar>
-        <div class="skeleton-loader">abcd</div>
-    </ion-toolbar>
+    
 </ion-header>
 
 <ion-content (ionScroll)="getScrollPosition()">
@@ -38,10 +35,10 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <ion-card *ngFor="let news of newsList" class="news" (click)="goItemPage(news)">
-        <img [src]="news.image"/>
-        <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{news.title}}</ion-row>
-        <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(news.published_at) | date:'dd MMM h:mm'}}</ion-row>
+    <ion-card *ngFor="let news of newsList" class="news" (click)="goItemPage(news.uid)">
+        <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'"/>
+        <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{news.heading}}</ion-row>
+        <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(news.date_updated)}}</ion-row>
     </ion-card>
 
     <div *ngIf="newsList.length==0 && !isInternet && errorMessage==null" text-center padding>

@@ -1,28 +1,28 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{news.title}}</ion-title>
+        <ion-title>{{news.heading}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <img src="{{news.image}}"/>
+    <img src="{{'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'}}"/>
     <div padding>
         <ion-row>
-            <h3 col-11 [style.font-size]="app.fontSize+'px'">{{news.title}}</h3>
+            <h3 col-11 [style.font-size]="app.fontSize+'px'">{{news.heading}}</h3>
             <h2><ion-icon [name]="saveIcon" (click)="saveNews(news)"></ion-icon></h2>
         </ion-row>
         <span>
-          <ion-icon ios="md-time" md="md-time"></ion-icon> {{app.formatDate(news.published_at) | date:'dd.MM.yyyy / h:mm'}}
-          <ion-icon ios="md-eye" md="md-eye" margin-left></ion-icon> {{news.views}}
+          <ion-icon ios="md-time" md="md-time"></ion-icon> {{app.formatDate(news.date_updated)}}
+          <ion-icon ios="md-eye" md="md-pin" margin-left></ion-icon> {{news.location}}
         </span>
-        <div class="html" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.content"></div>
+        <div class="html" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.story"></div>
     </div>
 
     <b padding [style.font-size]="app.fontSize+'px'">Related news</b>
     
-    <ion-card *ngFor="let item of releated_news" class="news" (click)="goItemPage(item)">
-        <img [src]="item.image"/>
-        <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{item.title}}</ion-row>
-        <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(item.published_at) | date:'dd MMM h:mm'}}</ion-row>
+    <ion-card *ngFor="let item of related_news" class="news" (click)="goItemPage(item.id)">
+        <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'"/>
+        <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{item.heading}}</ion-row>
+        <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(item.published_at)}}</ion-row>
     </ion-card>
 </ion-content>
