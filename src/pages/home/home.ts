@@ -59,7 +59,7 @@ export class HomePage {
         res => {
           let parser = new DOMParser();
           let oDOM = parser.parseFromString(res, "application/xml");
-          let nodes = oDOM.firstChild.childNodes[0].data;
+          let nodes = oDOM.firstChild.childNodes[0]['data'];
           console.log('newslist', this.news.formatResponse(nodes))
           this.newsList = this.news.formatResponse(nodes);
           // oDOM = parser.parseFromString(nodes, "application/xml");

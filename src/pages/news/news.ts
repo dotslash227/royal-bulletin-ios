@@ -56,8 +56,12 @@ export class NewsPage {
               .subscribe(res => {
                 let parser = new DOMParser();
                 let oDOM = parser.parseFromString(res, "application/xml");
-                let nodes = oDOM.firstChild.childNodes[0].data;
+                let nodes = oDOM.firstChild.childNodes[0]['data'];
                 this.related_news = this.related_news.concat(this.newsProvider.formatResponse(nodes));
+              }, err => console.log(err),
+                () => {
+                  this.related_news = this.related_news.filter(news => news !== undefined);
+                console.log(this.related_news);
               });
           });
       }
