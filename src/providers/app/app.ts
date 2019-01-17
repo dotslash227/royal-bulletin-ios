@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class AppProvider {
 
-    public APP_TITLE: string = 'TOP NEWS';
+    public APP_TITLE: string = 'रॉयल बुलेटिन';
     public BASE_URL: string = 'https://envato.instayukle.com';
     public category: any = [];
     private theme: BehaviorSubject<String>;
