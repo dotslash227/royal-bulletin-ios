@@ -1,0 +1,9 @@
+To Get List of Categories  - http://royalbulletin.com/content/servlet/RDESController?command=rdm.RDMGateway&platform=native&data=%3C%3Fxml%20version%3D'1.0'%20encoding%3D'UTF-8'%3F%3E%3Crdm%20%20action%3D'com.rdes.engine.news.RDNewsEngine%23getPartnerNewsCategories'%20sessionId%3D'RDWEBYXEJQEPWQYF6V2FGKWENYC8D81IT9NDI'%20app%3D'rdes'%20partner%3D'royal'%20client%3D'web'%20req_time%3D'2019-01-09%2008%3A11%3A55'%3E%3Cproperty%20%09id%3D'1'%09sendSync%3D'true'%2F%3E%3C%2Frdm%3E
+
+
+To Get News from Category  - http://royalbulletin.com/content/servlet/RDESController?command=rdm.RDMGateway&platform=native&data=%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%3Crdm%20%20action%3D%27com.rdes.engine.news.RDNewsEngine%23getNewsWebsite%27%20sessionId%3D%27RDWEBYXEJQEPWQYF6V2FGKWENYC8D81IT9NDI%27%20app%3D%27rdes%27%20partner%3D%27royal%27%20client%3D%27web%27%20req_time%3D%272019-01-09%2008%3A15%3A19%27%3E%3Cproperty%20id%3D%271%27%09category%3D%277321566%27%20sendSync%3D%27true%27%09newsType%3D%27USER%27%09counts%3D%272%27%2F%3E%3C%2Frdm%3E
+
+To Get News by Id -  http://royalbulletin.com/content/servlet/RDESController?command=rdm.RDMGateway&platform=native&data=%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%3Crdm%20%20action%3D%27com.rdes.engine.news.RDNewsEngine%23getNewsWebsite%27%20sessionId%3D%27RDWEBYXEJQEPWQYF6V2FGKWENYC8D81IT9NDI%27%20app%3D%27rdes%27%20partner%3D%27royal%27%20client%3D%27web%27%20req_time%3D%272019-01-09%2008%3A15%3A19%27%3E%3Cproperty%20newsId%3D%22138752%22%20id%3D%271%27%09sendSync%3D%27true%27%09newsType%3D%27USER%27%2F%3E%3C%2Frdm%3E
+
+
+To Access Image - http://cloud.royalbulletin.com/<mediaId>/<mediaId>.png  where MediaIds comes in news reponse

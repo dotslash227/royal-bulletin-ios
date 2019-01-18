@@ -35,7 +35,7 @@ export class NewsPage {
     this.newsProvider.getNewsById(this.news.id).subscribe(res => {
       let parser = new DOMParser();
       let oDOM = parser.parseFromString(res, "application/xml");
-      let nodes = oDOM.firstChild.childNodes[0].data;
+      let nodes = oDOM.firstChild.childNodes[0]['data'];
       nodes = parser.parseFromString(nodes, "application/xml").firstChild
         .childNodes;
 
