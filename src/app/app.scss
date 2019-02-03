@@ -53,6 +53,19 @@ ion-toolbar.scrollable-segments {
       height: 30vh;
     }
   }
+
+  .menu{
+    list-style: none;
+    background-color:white;
+    padding: 10px;
+    margin-top: -2px;
+  }
+
+  .menu-item{
+    color: #c62828;
+    font-size: 15px;
+    font-weight: bold;
+  }
   
   .skeleton-loader {
     width: 100%;
