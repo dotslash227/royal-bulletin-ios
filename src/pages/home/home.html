@@ -1,5 +1,5 @@
-<ion-header>
-    <ion-navbar>
+<ion-header>        
+    <ion-navbar>        
         <ion-title *ngIf="!isSearchBar">{{app.APP_TITLE}}</ion-title>
         <ion-searchbar (search)="onSearch($event)" *ngIf="isSearchBar" showCancelButton="true" (ionCancel)="closeSearchBar()"></ion-searchbar>
 

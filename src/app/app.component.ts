@@ -7,10 +7,11 @@ import { AppProvider } from '../providers/app/app';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 @Component({
-  template: `<ion-nav [root]="rootPage" [class]="app.selectedTheme"></ion-nav>`
+  templateUrl: `app.html`
 })
 export class MyApp {
-  rootPage: any;
+  rootPage: any = HomePage;
+  pages: Array<{title: string, id: any}>;
 
   constructor(platform: Platform, public app: AppProvider, statusBar: StatusBar,
     splashScreen: SplashScreen, private push: Push, public alertCtrl: AlertController) {
@@ -20,6 +21,11 @@ export class MyApp {
       splashScreen.hide();
       this.initPush();
     });
+
+    this.pages = [
+      {title: "Home", id:"1"}
+    ]
+
   }
 
   initPush() {

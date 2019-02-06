@@ -1,0 +1,24 @@
+<ion-menu [content]="content">
+
+    <ion-content style="background-color:#c62828;">
+      <div class="logo">    
+        <img src="../assets/rblogo.jpg" />        
+      </div>
+      <ion-list>
+        
+      </ion-list>
+    </ion-content>
+  
+</ion-menu>
+  
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" [class]="app.selectedTheme" #content swipeBackEnabled="false"></ion-nav>
+  
+  <!-- <ion-footer>
+    <ion-toolbar>
+      <ion-title>
+        <ion-icon name="cash"></ion-icon>
+        Check our sponsors!
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer> -->
