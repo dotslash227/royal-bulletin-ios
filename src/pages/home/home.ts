@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgZone, Renderer } from "@angular/core";
-import { Content, NavController, Keyboard } from "ionic-angular";
+import { Content, NavController, Keyboard, MenuController } from "ionic-angular";
 import { AppProvider } from "../../providers/app/app";
 import { Network } from "@ionic-native/network";
 import { NewsPage } from "../news/news";
@@ -28,7 +28,8 @@ export class HomePage {
     private renderer: Renderer,
     private keyboard: Keyboard,
     private app: AppProvider,
-    private news: NewsProvider
+    private news: NewsProvider,
+    private menu: MenuController
   ) {
     this.scrollToTop = throttle(this.scrollToTop, 500, {
       leading: true,

@@ -5,16 +5,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { AppProvider } from '../providers/app/app';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { NewsProvider } from '../providers/news/news';
 
 @Component({
   templateUrl: `app.html`
 })
 export class MyApp {
   rootPage: any = HomePage;
-  pages: Array<{title: string, id: any}>;
+  pages: Array<{title: string, id: any}> = [];
 
   constructor(platform: Platform, public app: AppProvider, statusBar: StatusBar,
-    splashScreen: SplashScreen, private push: Push, public alertCtrl: AlertController) {
+    splashScreen: SplashScreen, private push: Push, public alertCtrl: AlertController,
+    private news: NewsProvider) {
     platform.ready().then(() => {
       this.rootPage = HomePage;
       statusBar.styleDefault();
@@ -22,9 +24,8 @@ export class MyApp {
       this.initPush();
     });
 
-    this.pages = [
-      {title: "Home", id:"1"}
-    ]
+    news.getCategories()
+    .subscribe(res => this.pages = this.news.formatResponse(res))
 
   }
 

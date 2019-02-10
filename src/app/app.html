@@ -4,8 +4,10 @@
       <div class="logo">    
         <img src="../assets/rblogo.jpg" />        
       </div>
-      <ion-list>
-        
+      <ion-list *ngIf="pages.length > 0">
+        <ion-item *ngFor="let page of pages" class="menu-items">
+          {{page.name}}
+        </ion-item>
       </ion-list>
     </ion-content>
   

@@ -72,3 +72,12 @@ ion-toolbar.scrollable-segments {
       background-position: 100px;
     }
   }
+
+  .menu-items {
+    background: none;
+    color: white;
+  }
+
+  .menu-items .item-inner {
+    border-bottom: none !important;
+  }
