@@ -6,8 +6,7 @@ import { HomePage } from '../pages/home/home';
 import { AppProvider } from '../providers/app/app';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { NewsProvider } from '../providers/news/news';
-import { NewsPage } from '../pages/news/news';
-import { MenuProvider } from '../providers/menu/menu';
+import { Network } from "@ionic-native/network";
 
 @Component({
   templateUrl: `app.html`
@@ -15,7 +14,10 @@ import { MenuProvider } from '../providers/menu/menu';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = HomePage;
-  pages: Array<{ title: string; id: any }> = [];
+  pages: Array<{title: string, id: any}>;
+  private news:NewsProvider;
+  private network: Network;
+  public isInternet: boolean;
 
   constructor(
     platform: Platform,
