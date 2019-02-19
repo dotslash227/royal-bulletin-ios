@@ -5,7 +5,7 @@
         <img src="../assets/rblogo.jpg" />        
       </div>
       <ion-list *ngIf="pages.length > 0">
-        <ion-item *ngFor="let page of pages" class="menu-items">
+        <ion-item *ngFor="let page of pages" class="menu-items" (click)="goItemPage(page.uid)">
           {{page.name}}
         </ion-item>
       </ion-list>

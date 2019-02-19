@@ -1,14 +1,20 @@
-import { Component, ViewChild, NgZone, Renderer } from "@angular/core";
-import { Content, NavController, Keyboard, MenuController } from "ionic-angular";
-import { AppProvider } from "../../providers/app/app";
-import { Network } from "@ionic-native/network";
-import { NewsPage } from "../news/news";
-import { throttle } from "lodash";
-import { NewsProvider } from "../../providers/news/news";
+import { Component, ViewChild, NgZone, Renderer } from '@angular/core';
+import {
+  Content,
+  NavController,
+  Keyboard,
+  MenuController
+} from 'ionic-angular';
+import { AppProvider } from '../../providers/app/app';
+import { Network } from '@ionic-native/network';
+import { NewsPage } from '../news/news';
+import { throttle } from 'lodash';
+import { NewsProvider } from '../../providers/news/news';
+import { MenuProvider } from '../../providers/menu/menu';
 
 @Component({
-  selector: "page-home",
-  templateUrl: "home.html"
+  selector: 'page-home',
+  templateUrl: 'home.html'
 })
 export class HomePage {
   @ViewChild(Content) content: Content;
@@ -18,7 +24,7 @@ export class HomePage {
   public errorMessage: string = null;
   private newsList: any = [];
   private showFloat: boolean = false;
-  private query: string = "";
+  private query: string = '';
   private isSearchBar: boolean = false;
 
   constructor(
@@ -29,7 +35,8 @@ export class HomePage {
     private keyboard: Keyboard,
     private app: AppProvider,
     private news: NewsProvider,
-    private menu: MenuController
+    private menu: MenuController,
+    private menuProvider: MenuProvider
   ) {
     this.scrollToTop = throttle(this.scrollToTop, 500, {
       leading: true,
@@ -38,8 +45,15 @@ export class HomePage {
     this.loadCategoryList();
   }
 
+  ngOnInit() {
+    this.menuProvider.change.subscribe(id => {
+      console.log(id);
+      this.changeTab(id);
+    });
+  }
+
   loadCategoryList() {
-    if (this.network.type !== "none") {
+    if (this.network.type !== 'none') {
       this.news.getCategories().subscribe(data => {
         this.app.category = this.news.formatResponse(data);
         console.log(this.app.category);
@@ -51,7 +65,7 @@ export class HomePage {
   }
 
   loadNewsList(infiniteScroll: any = null, refresh: boolean = false) {
-    if (this.network.type !== "none") {
+    if (this.network.type !== 'none') {
       this.isInternet = false;
       this.errorMessage = null;
 
@@ -59,16 +73,11 @@ export class HomePage {
       this.news.getCategoryDetail(this.query).subscribe(
         res => {
           let parser = new DOMParser();
-          let oDOM = parser.parseFromString(res, "application/xml");
+          let oDOM = parser.parseFromString(res, 'application/xml');
           let nodes = oDOM.firstChild.childNodes[0]['data'];
-          console.log('newslist', this.news.formatResponse(nodes))
+          console.log('newslist', this.news.formatResponse(nodes));
           this.newsList = this.news.formatResponse(nodes);
-          // oDOM = parser.parseFromString(nodes, "application/xml");
-          // nodes = oDOM.firstChild.childNodes;
-
-          // for (let i = 0; i < nodes.length; i++) {
-          //   console.log(nodes[i])
-          // }
+          if (infiniteScroll != null) infiniteScroll.complete();
         },
         err => {
           console.log(err);
@@ -111,11 +120,11 @@ export class HomePage {
   }
 
   onSearch(event) {
-    this.renderer.invokeElementMethod(event.target, "blur");
+    this.renderer.invokeElementMethod(event.target, 'blur');
     this.keyboard.close();
     this.activeTab = this.app.category[0].title;
     this.newsList = [];
-    this.query = "&search=" + event.target.value;
+    this.query = '&search=' + event.target.value;
     this.loadNewsList();
   }
 
@@ -133,7 +142,7 @@ export class HomePage {
   closeSearchBar() {
     this.isSearchBar = false;
     this.newsList = [];
-    this.query = "";
+    this.query = '';
     this.loadNewsList();
   }
 
@@ -163,10 +172,10 @@ export class HomePage {
   }
 
   goSettings() {
-    this.navCtrl.push("SettingsPage");
+    this.navCtrl.push('SettingsPage');
   }
 
   goSavedNews() {
-    this.navCtrl.push("SavednewsPage");
+    this.navCtrl.push('SavednewsPage');
   }
 }
