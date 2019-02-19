@@ -13,12 +13,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewsPage } from "../pages/news/news";
 import { NewsProvider } from '../providers/news/news';
+import { CategoryPage } from "../pages/category/category";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    NewsPage
+    NewsPage,
+    CategoryPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { NewsProvider } from '../providers/news/news';
   entryComponents: [
     MyApp,
     HomePage,
-    NewsPage
+    NewsPage,
+    CategoryPage
   ],
   providers: [
     StatusBar,
