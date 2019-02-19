@@ -4,14 +4,11 @@
       <div class="logo">    
         <img src="../assets/rblogo.jpg" />        
       </div>
-
-      <ul class="menu">
-        <li class="menu-item">होम</li>
-
-        <li *ngFor="let tab of app.category" (click)="changeTab(tab.id)">
-          {{tab}}
-        </li>
-      </ul>
+      <ion-list *ngIf="pages.length > 0">
+        <ion-item *ngFor="let page of pages" class="menu-items" (click)="goItemPage(page.uid)">
+          {{page.name}}
+        </ion-item>
+      </ion-list>
     </ion-content>
   
 </ion-menu>

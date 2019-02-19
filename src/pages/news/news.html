@@ -23,9 +23,9 @@
 
     <b padding [style.font-size]="app.fontSize+'px'">Related news</b>
     
-    <!-- <ion-card *ngFor="let item of related_news" class="news" (click)="goItemPage(item.id)">
+    <ion-card *ngFor="let item of related_news" class="news" (click)="goItemPage(item.id)">
         <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'"/>
         <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{item.heading}}</ion-row>
-        <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(item.published_at)}}</ion-row>
-    </ion-card> -->
+        <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(item.date_created)}}</ion-row>
+    </ion-card>
 </ion-content>

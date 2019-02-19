@@ -1,9 +1,11 @@
 <ion-header>        
     <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>        
-        <ion-title *ngIf="!isSearchBar">{{app.APP_TITLE}}</ion-title>
+        <ion-title *ngIf="!isSearchBar">
+            <button color="primary" ion-button menuToggle>
+              <ion-icon name="menu"></ion-icon>
+              <span class="title">{{app.APP_TITLE}}</span>
+            </button>
+        </ion-title>
         <ion-searchbar (search)="onSearch($event)" *ngIf="isSearchBar" showCancelButton="true" (ionCancel)="closeSearchBar()"></ion-searchbar>
 
         <ion-buttons end>

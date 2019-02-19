@@ -50,7 +50,6 @@ export class NewsPage {
         this.related_news = this.news.otherCategories
           .split(",")
           .map(element => {
-            this.related_news = [];
             this.newsProvider
               .getCategoryDetail(parseInt(element))
               .subscribe(res => {
@@ -62,6 +61,7 @@ export class NewsPage {
                 () => {
                   this.related_news = this.related_news.filter(news => news !== undefined);
                 console.log(this.related_news);
+                return this.related_news;
               });
           });
       }
