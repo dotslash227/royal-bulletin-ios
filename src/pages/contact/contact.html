@@ -1,0 +1,25 @@
+<ion-header>        
+    <ion-navbar>
+        <ion-title *ngIf="!isSearchBar" style="margin-left:-90px;">
+            <button color="primary" ion-button menuToggle (click)="goToHome()">
+              <ion-icon name="menu" ></ion-icon>
+              <span class="title">हमसे संपर्क करें</span>
+            </button>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg" padding>
+
+    <div>
+        <p>For any media inquiry / advertisements / subscriptions / news submission or any other queries or complaints, we are available at the following office locations and phone numbers :-</p>
+
+    </div>
+
+    <div>
+        <p>Noida Office: 318, Jaipuria Plaza, Block E Sector 26, Gautam Buddha Nagar District, Noida, Uttar Pradesh</p>
+        <p>Muzaffarnagar Office:  Royal House, 174, Gandhi Colony, Muzaffarnagar, Uttar Pradesh</p>
+        <p>Phone: 9412211222  Phone: 0131-2412225</p>
+        <p>Email : contact@royalbulletin.com</p>
+    </div>
+</ion-content>

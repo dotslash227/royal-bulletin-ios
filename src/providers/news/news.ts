@@ -16,7 +16,7 @@ export class NewsProvider {
   }
 
   getCategories() {
-    let uri = `http://www.mocky.io/v2/5c3c670a3100007800a1a354`;
+    let uri = `http://rb.delhinerds.com`;
     return this.http.get(uri, { responseType: 'text' });
   }
 

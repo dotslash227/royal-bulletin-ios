@@ -12,17 +12,17 @@
             <h2><ion-icon [name]="saveIcon" (click)="saveNews(news)"></ion-icon></h2>
         </ion-row>
         <span>
-          <ion-icon ios="md-time" md="md-time"></ion-icon> {{app.formatDate(news.date_updated)}}
           <ion-icon ios="md-eye" md="md-pin" margin-left></ion-icon> {{news.location}}
+          <strong><ion-icon ios="copyright" md="md-pin" margin-left>&copy;</ion-icon></strong>ररॉयल बुलेटिन दैनिक जागरण
         </span>
-        <div class="html" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.story"></div>
+        <div class="html" style="margin-top:-50px;" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.story"></div>
     </div>
 
-    <b padding [style.font-size]="app.fontSize+'px'">Related news</b>
+    <!-- <b padding [style.font-size]="app.fontSize+'px'">Related news</b>
     
     <ion-card *ngFor="let item of related_news" class="news" (click)="goItemPage(item.id)">
         <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'"/>
         <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{item.heading}}</ion-row>
         <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(item.date_created)}}</ion-row>
-    </ion-card>
+    </ion-card> -->
 </ion-content>

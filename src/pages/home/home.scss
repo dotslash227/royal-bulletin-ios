@@ -2,4 +2,16 @@ page-home {
   .title {
     margin-left: 5px;
   }
+  .news-card{
+    margin-bottom: -10px;
+
+    h2{
+      font-size: 20px; 
+      margin-top: -5px;
+    }
+  }
+  .news-img{
+    width: 100%;
+    height: auto;
+  }
 }

@@ -8,6 +8,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { NewsProvider } from '../providers/news/news';
 import { NewsPage } from '../pages/news/news';
 import { MenuProvider } from '../providers/menu/menu';
+import { ContactPage } from '../pages/contact/contact';
 
 @Component({
   templateUrl: `app.html`
@@ -65,6 +66,11 @@ export class MyApp {
   goItemPage(id) {
     this.menuProvider.goToCategoryId(id);
     // this.nav.setRoot(NewsPage, { newsId: parseInt(id) });
+    this.menu.close();
+  }
+
+  gotoContact(){
+    this.nav.setRoot(ContactPage);
     this.menu.close();
   }
 }

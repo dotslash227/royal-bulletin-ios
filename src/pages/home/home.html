@@ -1,21 +1,21 @@
 <ion-header>        
     <ion-navbar>
-        <ion-title *ngIf="!isSearchBar">
+        <ion-title *ngIf="!isSearchBar" style="margin-left:-90px;">
             <button color="primary" ion-button menuToggle>
               <ion-icon name="menu"></ion-icon>
               <span class="title">{{app.APP_TITLE}}</span>
             </button>
         </ion-title>
-        <ion-searchbar (search)="onSearch($event)" *ngIf="isSearchBar" showCancelButton="true" (ionCancel)="closeSearchBar()"></ion-searchbar>
+        <!-- <ion-searchbar (search)="onSearch($event)" *ngIf="isSearchBar" showCancelButton="true" (ionCancel)="closeSearchBar()"></ion-searchbar> -->
 
-        <ion-buttons end>
+        <!-- <ion-buttons end>
             <button ion-button margin-left icon-only (click)="setSearchBar()" *ngIf="!isSearchBar">
                 <ion-icon name="search"></ion-icon>
             </button>
             <button ion-button icon-only (click)="goSettings()">
                 <ion-icon md="md-settings" ios="md-settings"></ion-icon>
             </button>
-        </ion-buttons>
+        </ion-buttons> -->
     </ion-navbar>
 
     <ion-toolbar class="scrollable-segments">
@@ -40,11 +40,28 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <ion-card *ngFor="let news of newsList" class="news" (click)="goItemPage(news.uid)">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 *ngFor="let news of newsList" class="news" (click)="goItemPage(news.uid)">
+                <ion-card padding class="news-card">                
+                <ion-row>
+                    <ion-col>
+                        <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'" class="news-img" />
+                    </ion-col>
+                    <ion-col>
+                        <h2>{{news.heading}}</h2><br />                    
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- <ion-card *ngFor="let news of newsList" class="news" (click)="goItemPage(news.uid)">
         <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'"/>
         <ion-row padding-top padding-left [style.font-size]="app.fontSize+'px'">{{news.heading}}</ion-row>
         <ion-row padding-bottom padding-left [style.font-size]="(app.fontSize*0.7)+'px'">{{app.formatDate(news.date_updated)}}</ion-row>
-    </ion-card>
+    </ion-card> -->
 
     <div *ngIf="newsList.length==0 && !isInternet && errorMessage==null" text-center padding>
         <ion-spinner name="crescent"></ion-spinner>

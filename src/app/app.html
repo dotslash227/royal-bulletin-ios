@@ -8,7 +8,10 @@
         <ion-item *ngFor="let page of pages" class="menu-items" (click)="goItemPage(page.uid)">
           {{page.name}}
         </ion-item>
+        <ion-item class="menu-items" (click)="gotoContact()">हमसे संपर्क करें</ion-item>
       </ion-list>
+      <div style="color:white; text-align:center; margin-top: -25px;">&copy; 2019 Royal Bulleting Dainik Jagran.</div>
+      <div style="color:white; text-align:center; margin-top: -0px; font-size: 10px;">App powered by Delhi Nerds</div>
     </ion-content>
   
 </ion-menu>

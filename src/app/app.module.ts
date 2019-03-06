@@ -15,9 +15,10 @@ import { NewsPage } from '../pages/news/news';
 import { NewsProvider } from '../providers/news/news';
 import { CategoryPage } from '../pages/category/category';
 import { MenuProvider } from '../providers/menu/menu';
+import { ContactPage } from "../pages/contact/contact";
 
 @NgModule({
-  declarations: [MyApp, HomePage, NewsPage, CategoryPage],
+  declarations: [MyApp, HomePage, NewsPage, CategoryPage, ContactPage],
   imports: [
     BrowserModule,
     HttpModule,
@@ -32,7 +33,7 @@ import { MenuProvider } from '../providers/menu/menu';
     })
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, NewsPage, CategoryPage],
+  entryComponents: [MyApp, HomePage, NewsPage, CategoryPage, ContactPage],
   providers: [
     StatusBar,
     SplashScreen,
