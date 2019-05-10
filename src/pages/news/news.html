@@ -11,11 +11,11 @@
             <h3 col-11 [style.font-size]="app.fontSize+'px'">{{news.heading}}</h3>
             <h2><ion-icon [name]="saveIcon" (click)="saveNews(news)"></ion-icon></h2>
         </ion-row>
-        <span>
+        <span style="margin-bottom: 20px;">
           <ion-icon ios="md-eye" md="md-pin" margin-left></ion-icon> {{news.location}}
-          <strong><ion-icon ios="copyright" md="md-pin" margin-left>&copy;</ion-icon></strong>ररॉयल बुलेटिन दैनिक जागरण
+          <strong><ion-icon ios="copyright" md="md-pin" margin-left margin-right>&copy;</ion-icon></strong>रॉयल बुलेटिन
         </span>
-        <div class="html" style="margin-top:-50px;" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.story"></div>
+        <div class="html" style="margin-top:-15px;" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.story"></div>
     </div>
 
     <!-- <b padding [style.font-size]="app.fontSize+'px'">Related news</b>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.royalbulletin" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.royalbulletin" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Royal Bulletin</name>
     <description>Royal Bulletin Mobile App</description>
     <author email="feyzilim@gmail.com" href="https://www.delhinerds.com/">Delhi Nerds</author>
@@ -87,6 +87,10 @@
     </plugin>
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="phonegap-plugin-push" spec="git+https://github.com/phonegap/phonegap-plugin-push.git" />
+    <plugin name="cordova-plugin-admob-free" spec="0.25.0">
+        <variable name="ADMOB_APP_ID" value="ca-app-pub-5573692375629420~2873180709" />
+    </plugin>
     <engine name="android" spec="7.1.4" />
+    <engine name="browser" spec="5.0.4" />
     <engine name="ios" spec="4.5.5" />
 </widget>

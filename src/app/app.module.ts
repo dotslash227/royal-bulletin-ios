@@ -16,6 +16,7 @@ import { NewsProvider } from '../providers/news/news';
 import { CategoryPage } from '../pages/category/category';
 import { MenuProvider } from '../providers/menu/menu';
 import { ContactPage } from "../pages/contact/contact";
+import { AdMobFree } from "@ionic-native/admob-free";
 
 @NgModule({
   declarations: [MyApp, HomePage, NewsPage, CategoryPage, ContactPage],
@@ -42,6 +43,7 @@ import { ContactPage } from "../pages/contact/contact";
     Network,
     Push,
     AppProvider,
+    AdMobFree,
     MenuProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MenuProvider

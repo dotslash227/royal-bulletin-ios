@@ -11,6 +11,8 @@ import { NewsPage } from '../news/news';
 import { throttle } from 'lodash';
 import { NewsProvider } from '../../providers/news/news';
 import { MenuProvider } from '../../providers/menu/menu';
+import {AdMobFree, AdMobFreeBannerConfig} from "@ionic-native/admob-free";
+
 
 @Component({
   selector: 'page-home',
@@ -28,6 +30,7 @@ export class HomePage {
   private isSearchBar: boolean = false;
 
   constructor(
+    private admobFree: AdMobFree,
     private navCtrl: NavController,
     private network: Network,
     private zone: NgZone,
@@ -43,6 +46,19 @@ export class HomePage {
       trailing: false
     });
     this.loadCategoryList();
+  }
+
+  bannerAd(){
+    let bannerConfig: AdMobFreeBannerConfig = {
+      isTesting: true,
+      autoShow: true,
+      // id: "ca-app-pub-3940256099942544/6300978111"
+    }
+    this.admobFree.banner.config(bannerConfig);
+    this.admobFree.banner.prepare().then(()=>
+    {
+      // Success
+    }).catch(e=>console.log(e));
   }
 
   ngOnInit() {
@@ -62,7 +78,7 @@ export class HomePage {
     } else {
       this.isInternet = true;
     }
-  }
+  }  
 
   loadNewsList(infiniteScroll: any = null, refresh: boolean = false) {
     if (this.network.type !== 'none') {
