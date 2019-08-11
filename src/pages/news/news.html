@@ -14,6 +14,9 @@
         <span style="margin-bottom: 20px;">
           <ion-icon ios="md-eye" md="md-pin" margin-left></ion-icon> {{news.location}}
           <strong><ion-icon ios="copyright" md="md-pin" margin-left margin-right>&copy;</ion-icon></strong>रॉयल बुलेटिन
+          <span margin-left>शेयरिंग केयरिंग है:</span> <ion-icon (click)="fbShare(news)" style="color:blue" ios="logo-facebook" name="logo-facebook"></ion-icon>
+          <ion-icon (click)="twitterShare(news)" ios="logo-twitter" style="color:cornflowerblue;" name="logo-twitter"></ion-icon>
+          <ion-icon (click)="whatsappShare(news)" ios="logo-whatsapp" name="logo-whatsapp" style="color:green;"></ion-icon>
         </span>
         <div class="html" style="margin-top:-15px;" [style.font-size]="app.fontSize+'px'" [innerHTML]="news.story"></div>
     </div>

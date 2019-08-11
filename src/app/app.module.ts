@@ -17,10 +17,11 @@ import { CategoryPage } from '../pages/category/category';
 import { MenuProvider } from '../providers/menu/menu';
 import { ContactPage } from "../pages/contact/contact";
 import { AdMobFree } from "@ionic-native/admob-free";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [MyApp, HomePage, NewsPage, CategoryPage, ContactPage],
-  imports: [
+  imports: [    
     BrowserModule,
     HttpModule,
     HttpClientModule,
@@ -44,7 +45,8 @@ import { AdMobFree } from "@ionic-native/admob-free";
     Push,
     AppProvider,
     AdMobFree,
-    MenuProvider,
+    MenuProvider,   
+    SocialSharing, 
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MenuProvider
   ]

@@ -31,8 +31,7 @@
     
 </ion-header>
 
-<ion-content (ionScroll)="getScrollPosition();">
-    <!-- {{bannerAd()}} -->
+<ion-content (ionScroll)="getScrollPosition();">    
     <ion-refresher (ionRefresh)="loadNewsList($event, true)">
         <ion-refresher-content
                 pullingIcon="arrow-dropdown"
@@ -43,12 +42,12 @@
     <ion-grid>    
         <ion-row>
             <ion-col col-12 *ngFor="let news of newsList" class="news" (click)="goItemPage(news.uid)">
-                <ion-card padding class="news-card">                
+                <ion-card class="news-card" style="padding: -2px;">
                 <ion-row>
                     <ion-col>
                         <img [src]="'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'" class="news-img" />
                     </ion-col>
-                    <ion-col>
+                    <ion-col col-8>
                         <h2>{{news.heading}}</h2><br />                    
                     </ion-col>
                 </ion-row>

@@ -45,30 +45,32 @@ export class HomePage {
       leading: true,
       trailing: false
     });
-    this.loadCategoryList();
+    this.bannerAd();  
+    this.loadCategoryList();    
   }
 
   bannerAd(){
     let bannerConfig: AdMobFreeBannerConfig = {
-      isTesting: true,
+      isTesting: false,
       autoShow: true,
-      // id: "ca-app-pub-3940256099942544/6300978111"
+      id: "ca-app-pub-5573692375629420/2195242404"
     }
     this.admobFree.banner.config(bannerConfig);
-    this.admobFree.banner.prepare().then(()=>
+    
+    this.admobFree.banner.prepare().then((result)=>
     {
-      // Success
+      console.log(result);
     }).catch(e=>console.log(e));
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.menuProvider.change.subscribe(id => {
       console.log(id);
       this.changeTab(id);
     });
   }
 
-  loadCategoryList() {
+  loadCategoryList() {    
     if (this.network.type !== 'none') {
       this.news.getCategories().subscribe(data => {
         this.app.category = this.news.formatResponse(data);
@@ -80,7 +82,10 @@ export class HomePage {
     }
   }  
 
-  loadNewsList(infiniteScroll: any = null, refresh: boolean = false) {
+  loadNewsList(infiniteScroll: any = null, refresh: boolean = false) {   
+    
+    this.bannerAd();
+
     if (this.network.type !== 'none') {
       this.isInternet = false;
       this.errorMessage = null;
@@ -148,7 +153,7 @@ export class HomePage {
     this.isSearchBar = false;
     this.query = newTab;
     this.activeTab = newTab;
-    this.loadNewsList(null, true);
+    this.loadNewsList(null, true);    
   }
 
   goItemPage(id) {
@@ -182,7 +187,7 @@ export class HomePage {
     }
   }
 
-  checkInternet() {
+  checkInternet() {    
     if (this.app.category.length == 0) this.loadCategoryList();
     else this.loadNewsList();
   }

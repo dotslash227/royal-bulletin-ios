@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController } from "ionic-angular";
 import { AppProvider } from "../../providers/app/app";
 import { NewsProvider } from "../../providers/news/news";
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: "page-news",
@@ -17,7 +18,8 @@ export class NewsPage {
     private app: AppProvider,
     public toastCtrl: ToastController,
     public navParams: NavParams,
-    private newsProvider: NewsProvider
+    private newsProvider: NewsProvider,
+    private socialSharing: SocialSharing
   ) {
     this.news = {
       id: this.navParams.get("newsId")
@@ -80,6 +82,27 @@ export class NewsPage {
 
   goItemPage(data) {
     this.navCtrl.push(NewsPage, { newsId: parseInt(data) });
+  }
+
+  fbShare(news){
+    let message= news.story;
+    let url = "https://www.royalbulletin.com" + news.url
+    let image = 'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'
+    this.socialSharing.shareViaFacebook(message, url, image);
+  }
+
+  twitterShare(news){
+    let message= news.story;
+    let url = "https://www.royalbulletin.com" + news.url
+    let image = 'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'
+    this.socialSharing.shareViaTwitter(message, url, image);    
+  }
+
+  whatsappShare(news){
+    let message= news.story;
+    let url = "https://www.royalbulletin.com" + news.url
+    let image = 'http://cloud.royalbulletin.com/' + news.mediaIds + '/' + news.mediaIds + '.png'
+    this.socialSharing.shareViaWhatsApp(message, url, image);
   }
 
   saveNews(news: any) {
